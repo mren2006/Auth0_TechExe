@@ -41,7 +41,7 @@ Once the packages are installed, you can then run the Angular app:
 npm start
 ```
 
-The application will be served at `http://localhost:2000`.
+The application will be served at `http://localhost:4200`.
 
 ## What is Auth0?
 
