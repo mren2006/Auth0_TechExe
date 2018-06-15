@@ -42,8 +42,7 @@ D: enhanced feature: (TBD: Based on availablity)
 
 1. Do not use the Authorization Extension ---> Planning use customize rule to handling permission and roles based on user's job Title when creating or updating a user 
 
-2. Enable usage of refresh_token for mobile applications --> planning use silent authenticaiton to handle refresh_token  response_type = code id_token token and allow 
-    offline
+2. Enable usage of refresh_token for mobile applications --> planning use silent authenticaiton to handle refresh_token  response_type = code id_token token and allow offline_Access
 
 3. Add your own custom rule (not from a template) that enriches the user profile --> for instance: Add custom claims in the rules
 
