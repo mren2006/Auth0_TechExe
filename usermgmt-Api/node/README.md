@@ -42,22 +42,6 @@ To invoke the API start the node process and make a `POST` request to `http://lo
 
 You should add an `Authorization` header with the value `Bearer eyJ0eXAiOiJKV1QiKLPhbGciOiJSUzI1NiIsImtpZCI6Ik1qUXlOVFEyTURoR...`
 
-The body payload should be in the following format:
-
-json
-{
-	"user_title": "Developer",
-	"user_id": "001"
-   
-}
-
-
-You should get a response like the following:
-
-json
-{
-  "message": "usermgmt user created as Developer: 001"
-}
 
 
 

@@ -38,7 +38,7 @@ C. Technical specifications:
 
 ******************************************************
 
-enhanced feature: (TBD: Based on availablity)
+D: enhanced feature: (TBD: Based on availablity)
 
 1. Do not use the Authorization Extension ---> Planning use customize rule to handling permission and roles based on user's job Title when creating or updating a user 
 

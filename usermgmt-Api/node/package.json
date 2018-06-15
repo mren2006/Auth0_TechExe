@@ -1,7 +1,7 @@
 {
-  "name": "appointment-api",
+  "name": "usermgmt-api",
   "version": "1.0.0",
-  "description": "API used to add appointments for developers and managers",
+  "description": "custom API used to access user managment API with limited access based on user job title",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
