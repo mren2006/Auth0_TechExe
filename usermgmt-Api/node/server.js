@@ -5,7 +5,8 @@ const jwtAuthz = require('express-jwt-authz');
 const jwksRsa = require('jwks-rsa');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const usermgmts
+const usermgmts  = require('./fakeData').users();
+const _ = require('lodash');
 
 require('dotenv').config();
 
