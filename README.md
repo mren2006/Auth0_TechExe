@@ -25,7 +25,6 @@ SPA:   Usermgmt-spa:  Node.js application with Angular to authenticate and autho
 API:   usermgmt-api:  Node.js API service protected by Auth0
 
 
-
 C. Technical specifications:
 
 
