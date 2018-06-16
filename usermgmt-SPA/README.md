@@ -1,16 +1,14 @@
 # Auth0_TechExe
 
-# Angular Single Page Application
+Goal: Provide the solution that allows a customer to define limited access to their Auth0 User management API
 
-## Overview
+## art 2: # Angular Single Page Application  --   usermgmt-SPA
 
-This sample application is part of the Auth0 [Architecture Scenarios](https://auth0.com/docs/architecture-scenarios). For more information about implementing this application, please read the following Architecture Scenario document:
-
-* [SPA + API](https://auth0.com/docs/architecture-scenarios/application/spa-api)
+This sample application is a re-designed and re-purposed version to follow the Auth0 [Architecture Scenarios](https://auth0.com/docs/architecture-scenarios),to meet the specific requirement above to allow limit access to API and SPA web pages/menus as per signed user's jobtitle related permission level
 
 ## Implementation
 
-This folder includes the Single Page Application (SPA) implementation using [Angular](https://angular.io/).
+This part includes the Single Page Application (SPA) implementation using [Angular] and Node.Js
 
 ## Prerequisites
 
@@ -19,53 +17,32 @@ This folder includes the Single Page Application (SPA) implementation using [Ang
 
 ## Set the configuration values
 
-Rename the `auth0-variables.ts.example` file in the `src/app/auth` folder to `auth0-variables.ts` Once you have renamed the file you should set the following values in your new `auth0-variables.ts` file:
+* `{DOMAIN}`: Set this to the value of the Auth0 Domain you registered.
 
-* `{DOMAIN}`: Set this to the value of your Auth0 Domain. You can retrieve it from the *Settings* of your Client at the [Auth0 Dashboard](https://manage.auth0.com/#/clients).
-* `{CLIENT_ID}`: Set this to the value for your Auth0 Client. You can retrieve it from the *Settings* of your Client at the [Auth0 Dashboard](https://manage.auth0.com/#/clients).
-* `{API_IDENTIFIER}`: Set this to the value of your API Identifier. You can retrieve it from the *Settings* of your API at the [Auth0 Dashboard](https://manage.auth0.com/#/apis).
+* `{CLIENT_ID}`: Set this to the value for the Auth0 Client - SPA application 
+
+* `{API_IDENTIFIER}`: Set this to the value for the API Identifier.  in this exercise, the usermgmt-API has an identifier as https://usermgmtAPI.azuresec.com 
+
 
 ## Deploy & Run
 
-To test this application, you will need to also configure and run the corresponding API. Please see the [README.md](../../usermgmts-api/node/README.md) for the API for instructions on how to configure and run the API.
+To test this application, you will need to also configure and run the corresponding API. Please see the [README.md](../usermgmts-api/node/README.md) for the API for instructions on how to configure and run the API.
 
-Once the API is running, you can open a terminal window to the folder in which this README.md is (`/usermgmts-spa/angular`) and install the required packages for the Angular SPA by running:
+Once the API is running, you can open a terminal window to the folder in which this README.md is (`/usermgmts-spa`) and install the required packages for the Angular SPA by running:
 
-```text
 npm i
-```
 
 Once the packages are installed, you can then run the Angular app:
 
-```text
 npm start
-```
 
-The application will be served at `http://localhost:4200`.
+or if has angular cli, run:
 
-## What is Auth0?
+ng server
 
-Auth0 helps you to:
+The application will be served at `http://localhost:4200`.  Important: use Chrome for as testing browser for this project
 
-* Add authentication with [multiple authentication sources](https://docs.auth0.com/identityproviders), either social like **Google, Facebook, Microsoft Account, LinkedIn, GitHub, Twitter, Box, Salesforce, amont others**, or enterprise identity systems like **Windows Azure AD, Google Apps, Active Directory, ADFS or any SAML Identity Provider**.
-* Add authentication through more traditional **[username/password databases](https://docs.auth0.com/mysql-connection-tutorial)**.
-* Add support for **[linking different user accounts](https://docs.auth0.com/link-accounts)** with the same user.
-* Support for generating signed [Json Web Tokens](https://docs.auth0.com/jwt) to call your APIs and **flow the user identity** securely.
-* Analytics of how, when and where users are logging in.
-* Pull data from other sources and add it to the user profile, through [JavaScript rules](https://docs.auth0.com/rules).
-
-## Create a free Auth0 account
-
-1. Go to [Auth0](https://auth0.com/signup) and click Sign Up.
-2. Use Google, GitHub or Microsoft Account to login.
-
-## Issue Reporting
-
-If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
-
-## Author
-
-[Auth0](auth0.com)
+The https://azuresec.auth0.com also configured the google IDP as the authentication identity provider.
 
 ## License
 

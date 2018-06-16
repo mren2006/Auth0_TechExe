@@ -42,11 +42,13 @@ app.use(bodyParser.urlencoded({
 // create usermgmts API endpoint for reading or listing data
 app.get('/usermgmts', checkJwt, jwtAuthz(['read:data']), function (req, res) {
    
+
    // Do anything that can list data 
    // for instance: access to Auth0 management API to read user profile info
     
     //   GET /api/v2/users
 
+    // this is a fake API call that need to access with write:data permission
    console.log("login User can ** read ** data on API");
 
   //send the response
@@ -71,7 +73,6 @@ app.get('/usermgmtadd', checkJwt, jwtAuthz(['write:data']), function (req, res) 
 
 
 // create usermgmts API endpoint to check delete permission
-
 app.get('/usermgmtdelete', checkJwt, jwtAuthz(['delete:data']), function (req, res) {
   
    // this is a fake API call that need to be accessed with delete:data permission

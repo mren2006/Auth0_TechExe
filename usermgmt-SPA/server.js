@@ -7,7 +7,7 @@ app.use(cors());
 
 //reserve to if implementing silent Authentication
 
-//app.use('/silent', staticFile(`${__dirname}/silent.html`));
+app.use('/silent', staticFile(`${__dirname}/silent.html`));
 
 app.listen(1001);
 console.log('Listening on http://localhost:1001');
