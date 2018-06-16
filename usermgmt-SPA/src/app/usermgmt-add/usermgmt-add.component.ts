@@ -9,22 +9,19 @@ import { NewusermgmtModel } from '../models/new-usermgmt-model';
   styleUrls: ['./usermgmt-add.component.css']
 })
 export class usermgmtAddComponent implements OnInit {
-  
+
+  usermgmts: Array<any>;
   error: string;
-  model = new NewusermgmtModel();
 
-  constructor(private router: Router, private usermgmtsService: usermgmtsService) { }
-
-  onSubmit() {
-    this.usermgmtsService.addusermgmt(this.model)
-      .subscribe(
-        data => this.router.navigate(['/usermgmts']),
-      error => this.error = error.statusText
-      );
-
-  }
+  constructor(private usermgmtsService: usermgmtsService) { }
 
   ngOnInit() {
+    this.usermgmtsService.addusermgmt()
+      .subscribe(
+      data => this.usermgmts = data,
+      error => this.error = error.statusText
+      );
+  }
   }
 
-}
+

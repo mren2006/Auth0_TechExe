@@ -5,8 +5,7 @@ const jwtAuthz = require('express-jwt-authz');
 const jwksRsa = require('jwks-rsa');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const usermgmts = "";//  = require('./fakeData').users();
-//const _ = require('lodash');
+
 
 require('dotenv').config();
 
@@ -41,7 +40,7 @@ app.use(bodyParser.urlencoded({
 
 
 // create usermgmts API endpoint
-app.post('/usermgmtadd', checkJwt, jwtAuthz(['write:data']), function (req, res) {
+app.get('/usermgmtadd', checkJwt, jwtAuthz(['write:data']), function (req, res) {
   //var usermgmt = req.body;
 
   console.log("login User can ** write ** data on API");
@@ -49,7 +48,7 @@ app.post('/usermgmtadd', checkJwt, jwtAuthz(['write:data']), function (req, res)
   //usermgmts.push(req.body);
 
   //send the response
-  res.status(201).send();
+  res.status(200).send();
 });
 
 // create usermgmts API endpoint
@@ -63,7 +62,7 @@ app.get('/usermgmts', checkJwt, jwtAuthz(['read:data']), function (req, res) {
   res.status(200).send();
 });
 
-app.post('/usermgmtdelete', checkJwt, jwtAuthz(['delete:data']), function (req, res) {
+app.get('/usermgmtdelete', checkJwt, jwtAuthz(['delete:data']), function (req, res) {
  
    
   

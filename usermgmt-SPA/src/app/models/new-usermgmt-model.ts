@@ -1,5 +1,5 @@
 export class NewusermgmtModel {
-    date: Date;
-    project: string;
-    hours: Number;
+
+    name: string;
+    id: string;
 }

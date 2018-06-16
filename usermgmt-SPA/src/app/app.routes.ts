@@ -14,6 +14,6 @@ export const ROUTES: Routes = [
   { path: 'callback', component: CallbackComponent },
   { path: 'usermgmt-add', component: usermgmtAddComponent, canActivate: [AuthGuard] , data: { expectedScopes: ['write:data']}},
   { path: 'usermgmt-list', component: usermgmtListComponent, canActivate: [AuthGuard] , data: { expectedScopes: ['read:data']}},
-  { path: 'usermgmt-delete', component: usermgmtdeleteComponent, canActivate: [ScopeGuard], data: { expectedScopes: ['Delete:data']} },
+  { path: 'usermgmt-delete', component: usermgmtdeleteComponent, canActivate: [AuthGuard], data: { expectedScopes: ['delete:data']} },
   { path: '**', redirectTo: '' }
 ];

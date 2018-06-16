@@ -10,21 +10,21 @@ export class usermgmtsService {
 
   constructor(public authHttp: AuthHttp) { }
 
-  addusermgmt(model: NewusermgmtModel) {
-    return this.authHttp.post(AUTH_CONFIG.apiUrl + '/usermgmts', JSON.stringify(model));
+  addusermgmt() {
+    return this.authHttp.get(AUTH_CONFIG.apiUrl + '/usermgmtadd').map(res => res.json()) ;
   }
 
   getAllusermgmts() {
     return this.authHttp.get(AUTH_CONFIG.apiUrl + '/usermgmts')
       .map(res => res.json())
   }
-
-  getUnapprovedusermgmts() {
-    return this.authHttp.get(AUTH_CONFIG.apiUrl + '/usermgmtdeletes')
-      .map(res => res.json())
+/*
+ deleteusermgmt() {
+    return this.authHttp.delete(AUTH_CONFIG.apiUrl + '/usermgmtdelete', JSON.stringify(model));
+    //  .map(res => res.json())
   }
-
-  approveusermgmt(id: number) {
-    return this.authHttp.put(AUTH_CONFIG.apiUrl + '/usermgmtdeletes/' + id, {})
+*/
+  deleteusermgmt() {
+    return this.authHttp.get(AUTH_CONFIG.apiUrl + '/usermgmtdelete/').map(res => res.json());
   }
 }

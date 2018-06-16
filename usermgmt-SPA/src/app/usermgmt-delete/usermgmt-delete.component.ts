@@ -12,21 +12,12 @@ export class usermgmtdeleteComponent implements OnInit {
 
   constructor(private usermgmtsService: usermgmtsService) { }
 
-    ngOnInit() {
-      this.usermgmtsService.getUnapprovedusermgmts()
-        .subscribe(
-        data => this.usermgmts = data,
-        error => this.error = error.statusText
-        );
-    }
-
-    approve(id: number) {
-      this.usermgmtsService.approveusermgmt(id)
+  ngOnInit() {
+    this.usermgmtsService.deleteusermgmt()
       .subscribe(
-        data => this.usermgmts = this.usermgmts.filter(i => i.id !== id),
-        error => this.error = error.statusText
+      data => this.usermgmts = data,
+      error => this.error = error.statusText
       );
-
-    }
+  }
 
 }
