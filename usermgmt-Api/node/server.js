@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
-  throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file';
+  throw 'need to set AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file';
 }
 
 // Enable CORS
@@ -18,7 +18,7 @@ app.use(cors());
 
 // Create middleware for checking the JWT
 const checkJwt = jwt({
-  // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
+  // Dynamically provide a signing key in the header and the singing keys provided by the JWKS endpoint.
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
@@ -28,7 +28,7 @@ const checkJwt = jwt({
 
   // Validate the audience and the issuer.
   audience: 'https://usermgmtAPI.azuresec.com',
-  issuer: 'https://azuresec.auth0.com/',
+  issuer: 'https://azuresec.auth0.com/', //this is the testing tennant on the Auth0 SaaS service
   algorithms: ['RS256']
 });
 
@@ -39,33 +39,45 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-// create usermgmts API endpoint
-app.get('/usermgmtadd', checkJwt, jwtAuthz(['write:data']), function (req, res) {
-  //var usermgmt = req.body;
-
-  console.log("login User can ** write ** data on API");
-  // append the usermgmt
-  //usermgmts.push(req.body);
-
-  //send the response
-  res.status(200).send();
-});
-
-// create usermgmts API endpoint
+// create usermgmts API endpoint for reading or listing data
 app.get('/usermgmts', checkJwt, jwtAuthz(['read:data']), function (req, res) {
    
-    // Get all users for this user
-    console.log("login User can ** read ** data on API");
-    // call auth0 mangement API --   GET /api/v2/users
+   // Do anything that can list data 
+   // for instance: access to Auth0 management API to read user profile info
+    
+    //   GET /api/v2/users
+
+   console.log("login User can ** read ** data on API");
 
   //send the response
   res.status(200).send();
 });
 
-app.get('/usermgmtdelete', checkJwt, jwtAuthz(['delete:data']), function (req, res) {
- 
-   
+
+// create usermgmts API endpoint for adding user to check write permission
+app.get('/usermgmtadd', checkJwt, jwtAuthz(['write:data']), function (req, res) {
+
   
+ // this is a fake API call that need to access with write:data permission
+ 
+ // it is using GET to simplify the coding part, in real implementation it should use POST or PUT
+
+  console.log("login User can ** write ** data on API");
+
+
+  //send the response
+  res.status(200).send();
+});
+
+
+// create usermgmts API endpoint to check delete permission
+
+app.get('/usermgmtdelete', checkJwt, jwtAuthz(['delete:data']), function (req, res) {
+  
+   // this is a fake API call that need to be accessed with delete:data permission
+ 
+ // it is using GET to simplify the coding part, in real implementation it should use DELETE
+
   console.log("login User can ** delete ** data on API");
   
   //send the response
