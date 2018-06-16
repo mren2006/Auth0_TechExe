@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { usermgmtsService } from '../services/usermgmts.service';
 @Component({
-  selector: 'app-approval',
-  templateUrl: './approval.component.html',
-  styleUrls: ['./approval.component.css']
+  selector: 'app-usermgmtdelete',
+  templateUrl: './usermgmt-delete.component.html',
+  styleUrls: ['./usermgmt-delete.component.css']
 })
-export class ApprovalComponent implements OnInit {
+export class usermgmtdeleteComponent implements OnInit {
 
   usermgmts: Array<any>;
   error: string;
 
   constructor(private usermgmtsService: usermgmtsService) { }
-  
+
     ngOnInit() {
       this.usermgmtsService.getUnapprovedusermgmts()
         .subscribe(
@@ -26,7 +26,7 @@ export class ApprovalComponent implements OnInit {
         data => this.usermgmts = this.usermgmts.filter(i => i.id !== id),
         error => this.error = error.statusText
       );
-      
+
     }
 
 }

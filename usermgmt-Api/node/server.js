@@ -41,12 +41,12 @@ app.use(bodyParser.urlencoded({
 
 
 // create usermgmts API endpoint
-app.post('/usermgmts', checkJwt, jwtAuthz(['write:data']), function (req, res) {
-  var usermgmt = req.body;
+app.post('/usermgmtadd', checkJwt, jwtAuthz(['write:data']), function (req, res) {
+  //var usermgmt = req.body;
 
-  console.log("login User can write data");
+  console.log("login User can ** write ** data on API");
   // append the usermgmt
-  usermgmts.push(req.body);
+  //usermgmts.push(req.body);
 
   //send the response
   res.status(201).send();
@@ -56,18 +56,18 @@ app.post('/usermgmts', checkJwt, jwtAuthz(['write:data']), function (req, res) {
 app.get('/usermgmts', checkJwt, jwtAuthz(['read:data']), function (req, res) {
    
     // Get all users for this user
-    console.log("login User can read data");
+    console.log("login User can ** read ** data on API");
     // call auth0 mangement API --   GET /api/v2/users
 
   //send the response
   res.status(200).send();
 });
 
-app.put('/delete/:id', checkJwt, jwtAuthz(['delete:data']), function (req, res) {
+app.post('/usermgmtdelete', checkJwt, jwtAuthz(['delete:data']), function (req, res) {
  
- 
-
-  console.log("login User can delete data");
+   
+  
+  console.log("login User can ** delete ** data on API");
   
   //send the response
   res.status(200).send();

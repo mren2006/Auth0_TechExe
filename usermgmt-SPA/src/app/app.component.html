@@ -5,11 +5,15 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/">Authentication</a></li>
         <li><a *ngIf="auth.isAuthenticated()" routerLink="/profile">My Profile</a></li>
-        <li><a *ngIf="auth.isAuthenticated()" routerLink="/usermgmts">My usermgmts</a></li>
-        <li><a *ngIf="auth.isAuthenticated() && auth.userHasScopes(['approve:usermgmts'])" routerLink="/approval">Approve usermgmts</a></li>
+
+        <li><a *ngIf="auth.isAuthenticated() && auth.userHasScopes(['read:data'])" routerLink="/usermgmt-list">Can Read</a></li>
+        <li><a *ngIf="auth.isAuthenticated() && auth.userHasScopes(['write:data'])" routerLink="/usermgmt-add">Can Write</a></li>
+        <li><a *ngIf="auth.isAuthenticated() && auth.userHasScopes(['delete:data'])" routerLink="/usermgmt-delete">Can Delete</a></li>
+
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <li><a *ngIf="!auth.isAuthenticated()" href="javascript:void(0)" (click)="auth.login()">Log In</a></li>
         <li><a *ngIf="auth.isAuthenticated()" href="javascript:void(0)" (click)="auth.logout()">Log Out</a></li>

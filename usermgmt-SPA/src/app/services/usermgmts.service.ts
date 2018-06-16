@@ -20,11 +20,11 @@ export class usermgmtsService {
   }
 
   getUnapprovedusermgmts() {
-    return this.authHttp.get(AUTH_CONFIG.apiUrl + '/approvals')
+    return this.authHttp.get(AUTH_CONFIG.apiUrl + '/usermgmtdeletes')
       .map(res => res.json())
   }
 
   approveusermgmt(id: number) {
-    return this.authHttp.put(AUTH_CONFIG.apiUrl + '/approvals/' + id, {})
+    return this.authHttp.put(AUTH_CONFIG.apiUrl + '/usermgmtdeletes/' + id, {})
   }
 }

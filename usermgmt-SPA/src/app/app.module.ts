@@ -18,7 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CallbackComponent } from './callback/callback.component';
 import { usermgmtListComponent } from './usermgmt-list/usermgmt-list.component';
 import { usermgmtAddComponent } from './usermgmt-add/usermgmt-add.component';
-import { ApprovalComponent } from './approval/approval.component';
+import { usermgmtdeleteComponent } from './usermgmt-delete/usermgmt-delete.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -35,7 +35,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CallbackComponent,
     usermgmtListComponent,
     usermgmtAddComponent,
-    ApprovalComponent
+    usermgmtdeleteComponent
   ],
   imports: [
     BrowserModule,

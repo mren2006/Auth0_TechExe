@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApprovalComponent } from './approval.component';
+import { usermgmtdeleteComponent } from './usermgmt-delete.component';
 
-describe('ApprovalComponent', () => {
-  let component: ApprovalComponent;
-  let fixture: ComponentFixture<ApprovalComponent>;
+describe('usermgmtdeleteComponent', () => {
+  let component: usermgmtdeleteComponent;
+  let fixture: ComponentFixture<usermgmtdeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApprovalComponent ]
+      declarations: [ usermgmtdeleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApprovalComponent);
+    fixture = TestBed.createComponent(usermgmtdeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
