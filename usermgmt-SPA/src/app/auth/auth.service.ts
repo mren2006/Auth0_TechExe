@@ -10,7 +10,7 @@ export class AuthService {
 
   userProfile: any;
   refreshSubscription: any;
-  requestedScopes: string = 'openid profile read:usermgmts create:usermgmts';
+  requestedScopes: string = 'openid profile read:date write:data delete:data';
 
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,

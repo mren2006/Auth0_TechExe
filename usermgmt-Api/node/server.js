@@ -5,8 +5,8 @@ const jwtAuthz = require('express-jwt-authz');
 const jwksRsa = require('jwks-rsa');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const usermgmts  = require('./fakeData').users();
-const _ = require('lodash');
+const usermgmts = "";//  = require('./fakeData').users();
+//const _ = require('lodash');
 
 require('dotenv').config();
 
@@ -24,12 +24,12 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: 'https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json'
+    jwksUri: 'https://azuresec.auth0.com/.well-known/jwks.json'
   }),
 
   // Validate the audience and the issuer.
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: 'https://${process.env.AUTH0_DOMAIN}/',
+  audience: 'https://usermgmtAPI.azuresec.com',
+  issuer: 'https://azuresec.auth0.com/',
   algorithms: ['RS256']
 });
 
@@ -39,18 +39,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// Batch upload endpoint
-app.post('/usermgmts/upload', checkJwt, jwtAuthz(['batch:upload']), function (req, res) {
-  var usermgmt = req.body;
-
- // call list all 
- console.log("login User can list all data");
-  // append the usermgmt
-  usermgmts.push(req.body);
-
-  //send the response
-  res.status(201).send(usermgmt);
-});
 
 // create usermgmts API endpoint
 app.post('/usermgmts', checkJwt, jwtAuthz(['write:data']), function (req, res) {
@@ -61,7 +49,7 @@ app.post('/usermgmts', checkJwt, jwtAuthz(['write:data']), function (req, res) {
   usermgmts.push(req.body);
 
   //send the response
-  res.status(201).send(usermgmt);
+  res.status(201).send();
 });
 
 // create usermgmts API endpoint
@@ -72,19 +60,17 @@ app.get('/usermgmts', checkJwt, jwtAuthz(['read:data']), function (req, res) {
     // call auth0 mangement API --   GET /api/v2/users
 
   //send the response
-  res.status(200).send(userEntries);
+  res.status(200).send();
 });
 
 app.put('/delete/:id', checkJwt, jwtAuthz(['delete:data']), function (req, res) {
  
  
-    var entry = usermgmts.filter(entry => entry.id == req.params.id)[0];
-  entry.deleted = true;
 
-  console.log("login User can read data");
+  console.log("login User can delete data");
   
   //send the response
-  res.status(200).send(entry);
+  res.status(200).send();
 });
 
 
