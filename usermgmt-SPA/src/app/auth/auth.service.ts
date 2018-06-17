@@ -102,9 +102,9 @@ export class AuthService {
     this.auth0.checkSession({
     //this.auth0.renewAuth({
       audience: AUTH_CONFIG.audience,
-      redirectUri: AUTH_CONFIG.silentCallbackURL,
-      usePostMessage: true,
-      prompt: "none"
+     // redirectUri: AUTH_CONFIG.silentCallbackURL,
+     // usePostMessage: true,
+     // prompt: "none"
     }, (err, result) => {
       if (err) {
         alert(`Could not renew token with silent auth: (${err.error}).`);
