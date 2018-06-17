@@ -109,8 +109,8 @@ export class AuthService {
       if (err) {
         alert(`Could not renew token with silent auth: (${err.error}).`);
       } else {
-        alert(`Successfully renewed auth!`);
 
+        alert(`Successfully renewed auth!`);
         this.setSession(result);
       }
     });
