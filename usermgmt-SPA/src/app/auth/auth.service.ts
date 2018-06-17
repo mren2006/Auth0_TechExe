@@ -72,6 +72,7 @@ export class AuthService {
     localStorage.setItem('expires_at', expiresAt);
     localStorage.setItem('scopes', JSON.stringify(scopes));
     this.scheduleRenewal();
+
   }
 
   public logout(): void {
@@ -98,15 +99,18 @@ export class AuthService {
   }
 
   public renewToken() {
-    this.auth0.renewAuth({
+    this.auth0.checkSession({
+    //this.auth0.renewAuth({
       audience: AUTH_CONFIG.audience,
       redirectUri: AUTH_CONFIG.silentCallbackURL,
-      usePostMessage: true
+      usePostMessage: true,
+      prompt: "none"
     }, (err, result) => {
       if (err) {
-        //alert(`Could not get a new token using silent authentication (${err.error}).`);
+        alert(`Could not renew token with silent auth: (${err.error}).`);
       } else {
-        //alert(`Successfully renewed auth!`);
+        alert(`Successfully renewed auth!`);
+
         this.setSession(result);
       }
     });
@@ -116,6 +120,8 @@ export class AuthService {
     if (!this.isAuthenticated()) return;
 
     const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
+
+    alert('token expires At '+ new Date(Date.now()+120 *1000));
 
     const source = Observable.of(expiresAt).flatMap(
       expiresAt => {
@@ -132,6 +138,7 @@ export class AuthService {
     // reached, get a new JWT and schedule
     // additional refreshes
     this.refreshSubscription = source.subscribe(() => {
+
       this.renewToken();
     });
   }

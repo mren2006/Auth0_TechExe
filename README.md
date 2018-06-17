@@ -22,6 +22,8 @@ SPA:   Usermgmt-spa:  Node.js application with Angular to authenticate and autho
 
 API:   usermgmt-api:  Node.js API service protected by Auth0
 
+Important: Single Page and Native apps do not require further configuration of any machine to machine application. SPA will execute the Implicit Grant to access APIs while Native Apps (Mobile app) can do Authorize Code with PKCE for the same purpose.
+
 C. Technical specifications:
 
 1. Add "JobTitle" to the User_meadata while create Users through the Auth0 user management UI; user's permission is applied to app_metadata fields based on the rule settings from 
@@ -31,15 +33,22 @@ C. Technical specifications:
 
 3. Advanced solution: use a customized rule to include the user metadata inside the Id_Token in response, then retrieve the JWT to find the JobTitle, still define user's permission based on roles to access the API functions, but this can be difined on the fly (inside the code flow). -- This does not requires manually configuration, it falls through the code follow
 
-
 ******************************************************
 
 D: enhanced feature: (TBD: will be implemented based on availablity)
 
-1. Enable usage of refresh_token for SPA applications - silent authentication 
+1. Enable usage of renew_access_token for SPA applications using silent authentication 
+
+   Silent authentication lets you perform an authentication flow where Auth0 will only reply with redirects, and never with a login page. This does however require that the user was already logged in via SSO (Single Sign-On).
 
 2. Do not use the Authorization Extension ---> Planning use customize rule to handling permission and roles based on user's job Title when creating or updating a user 
 
 3. Add your own custom rule (not from a template) that enriches the user profile --> for instance: Add custom claims in the rules
 
 4. Enable usage of refresh_token for mobile applications --> planning use silent authenticaiton to handle refresh_token  response_type = code id_token token and allow offline_Access
+
+For Mobile App:
+
+The Authorization Code Grant has some security issues, when implemented on native applications. For instance, a malicious attacker can intercept the authorization_code returned by Auth0 and exchange it for an Access Token (and possibly a Refresh Token).
+
+The Proof Key for Code Exchange (PKCE) (defined in RFC 7636) is a technique used to mitigate this authorization code interception attack.

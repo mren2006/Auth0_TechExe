@@ -49,7 +49,7 @@ app.get('/usermgmts', checkJwt, jwtAuthz(['read:data']), function (req, res) {
     //   GET /api/v2/users
 
     // this is a fake API call that need to access with write:data permission
-   console.log("login User can ** read ** data on API");
+   console.log("login User  @ "+ new Date(Date.now()) + " : can ** read ** data on API");
 
   //send the response
   res.status(200).send();
@@ -64,7 +64,7 @@ app.get('/usermgmtadd', checkJwt, jwtAuthz(['write:data']), function (req, res) 
  
  // it is using GET to simplify the coding part, in real implementation it should use POST or PUT
 
-  console.log("login User can ** write ** data on API");
+  console.log("login User @ "+ new Date(Date.now()) + " : can ** write ** data on API");
 
 
   //send the response
@@ -79,7 +79,7 @@ app.get('/usermgmtdelete', checkJwt, jwtAuthz(['delete:data']), function (req, r
  
  // it is using GET to simplify the coding part, in real implementation it should use DELETE
 
-  console.log("login User can ** delete ** data on API");
+  console.log("login User  @ "+ new Date(Date.now()) + " : can ** delete ** data on API");
   
   //send the response
   res.status(200).send();

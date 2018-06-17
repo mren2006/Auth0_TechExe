@@ -14,9 +14,10 @@
     var webAuth = new auth0.WebAuth({
       domain: AUTH0_DOMAIN,
       clientID: AUTH0_CLIENT_ID,
-      scope: 'openid profile',
+      scope: 'openid profile read:data write:data delete:data',
       responseType: 'token id_token',
-      redirectUri: 'http://localhost:4200'
+      redirectUri: 'http://localhost:4200',
+      prompt:none
     });
   </script>
   <script>
