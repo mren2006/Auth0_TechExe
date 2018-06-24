@@ -9,8 +9,8 @@ A. Authorization Logic:
 Based on signed-in user's job tile, sign the roles with granted permissions (read:data, write:data, delete:data) to the identity for user to access the API functions that they are granted permission to access
 
  - Developer: can read the user information on API (Role: users)
- - Manager, director:   can read and update the user information on API (Role: managers)
- - Admin:     can read, update and delete user information on API (Role: Administrators)
+ - Manager:   can read and update the user information on API (Role: leaders)
+ - Admin:     can read, update and delete user information on API (Role: administrators)
 
 Customer will need to use Auth0 Authorization Management extension on Auth0 to grant permissions to roles, and add user to roles based on the user's Job Title
 
@@ -35,20 +35,20 @@ C. Technical specifications:
 
 ******************************************************
 
-D: enhanced feature: (TBD: will be implemented based on availablity)
+D: enhanced feature:
 
-1. Enable usage of renew_access_token for SPA applications using silent authentication 
+1. Enable usage of renew_access_token for SPA applications using silent authentication with SSO configured
 
-   Silent authentication lets you perform an authentication flow where Auth0 will only reply with redirects, and never with a login page. This does however require that the user was already logged in via SSO (Single Sign-On).
+   - Silent authentication lets you perform an authentication flow where Auth0 will only reply with redirects, and never with a login page. This does however require that the user was already logged in via SSO (Single Sign-On), in my case, it is using Auth0 SSO or google integrated SSO, both works  
 
 2. Do not use the Authorization Extension ---> Planning use customize rule to handling permission and roles based on user's job Title when creating or updating a user 
 
-3. Add your own custom rule (not from a template) that enriches the user profile --> for instance: Add custom claims in the rules
+  - To follow Role based access control best practice, using two rules: sign role for user based on the job title; then grant Application permission levels to based on roles 
+ 
+3. Add your own custom rule (not from a template) that enriches the user profile --> ( for instance: Add custom claims in the rules)
 
 4. Enable usage of refresh_token for mobile applications --> planning use silent authenticaiton to handle refresh_token  response_type = code id_token token and allow offline_Access
 
-For Mobile App:
-
-The Authorization Code Grant has some security issues, when implemented on native applications. For instance, a malicious attacker can intercept the authorization_code returned by Auth0 and exchange it for an Access Token (and possibly a Refresh Token).
+For Mobile App solution:The Authorization Code Grant has some security issues, when implemented on native applications. For instance, a malicious attacker can intercept the authorization_code returned by Auth0 and exchange it for an Access Token (and possibly a Refresh Token).
 
 The Proof Key for Code Exchange (PKCE) (defined in RFC 7636) is a technique used to mitigate this authorization code interception attack.
