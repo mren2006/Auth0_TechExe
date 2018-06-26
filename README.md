@@ -26,12 +26,7 @@ Important: Single Page and Native apps do not require further configuration of a
 
 C. Technical specifications:
 
-1. Add "JobTitle" to the User_meadata while create Users through the Auth0 user management UI; user's permission is applied to app_metadata fields based on the rule settings from 
-   the Authorization externsion rules
-
-2. For basic solution version, add permission inside the requested scope so it will be included in the bearer token when SPA application call the API to check the access permisson for API functions (defined limited access) -- this requires manually configuration for extension, role, permission and add users to roles from Auth0 management UI
-
-3. Advanced solution: use a customized rule to include the user metadata inside the Id_Token in response, then retrieve the JWT to find the JobTitle, still define user's permission based on roles to access the API functions, but this can be difined on the fly (inside the code flow). -- This does not requires manually configuration, it falls through the code follow
+1. For basic solution version, add permission inside the requested scope so it will be included in the bearer token when SPA application call the API to check the access permisson for API functions (defined limited access) -- this requires manually configuration for authorization extension, role, permission and add users to roles from Auth0 management UI
 
 ******************************************************
 
@@ -43,12 +38,13 @@ D: enhanced feature: (TBD: will be implemented based on availablity)
 
 2. Do not use the Authorization Extension ---> Planning use customize rule to handling permission and roles based on user's job Title when creating or updating a user 
 
-3. Add your own custom rule (not from a template) that enriches the user profile --> for instance: Add custom claims in the rules
+3. Add your own custom rule (not from a template) that enriches the user profile --> used Cleatbit Rest API to get the pre-defined user profiles to cut off tedious user profile   
+   collection work to enrich profile
 
-4. Enable usage of refresh_token for mobile applications --> planning use silent authenticaiton to handle refresh_token  response_type = code id_token token and allow offline_Access
+4. Enable usage of refresh_token for mobile applications --> To get the API ready to offline_Access so it can use refresh to renew token whrn it is expired. 
 
 For Mobile App:
 
-The Authorization Code Grant has some security issues, when implemented on native applications. For instance, a malicious attacker can intercept the authorization_code returned by Auth0 and exchange it for an Access Token (and possibly a Refresh Token).
+The Authorization Code Grant has some security issues, when implemented on native applications. For instance, a malicious attacker can intercept the authorization_code returned by Auth0 and exchange it for an Access Token (and possibly a Refresh Token). Set the application response type to Code; post request to the /oauth/token endpoint and include offline_access in the scope.
 
-The Proof Key for Code Exchange (PKCE) (defined in RFC 7636) is a technique used to mitigate this authorization code interception attack.
+The Proof Key for Code Exchange (PKCE) (defined in RFC 7636) is a technique used to mitigate this authorization code interception attack for mobile application, which used code_challange and code_verified to encrypt and decrypt the code 
